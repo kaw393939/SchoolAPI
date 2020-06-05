@@ -29,7 +29,7 @@ namespace SchoolAPI.Controllers
                 var organizations = _repository.Organization.GetAllOrganizations(trackChanges: false);
 
                 var organizationDto = _mapper.Map<IEnumerable<OrganizationDto>>(organizations);
-            //test the global exception handling
+            //uncomment the code below to test the global exception handling
             //throw new Exception("Exception");
             return Ok(organizationDto);
         }
