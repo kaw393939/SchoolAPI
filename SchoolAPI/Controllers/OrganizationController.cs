@@ -81,7 +81,11 @@ namespace SchoolAPI.Controllers
                 _logger.LogError("OrganizationForUpdateDto object sent from client is null.");
                 return BadRequest("OrganizationForUpdateDto object is null");
             }
-
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the OrganizationForUpdateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             var organizationEntity = _repository.Organization.GetOrganization(id, trackChanges: true);
             if (organizationEntity == null)
             {

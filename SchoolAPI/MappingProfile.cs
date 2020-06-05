@@ -15,6 +15,7 @@ namespace SchoolAPI
             CreateMap<OrganizationForCreationDto, Organization>();
             CreateMap<OrganizationForUpdateDto, Organization>();
 
+
         }
     }
 }
