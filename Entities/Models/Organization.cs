@@ -13,7 +13,8 @@ namespace Entities.Models
         [Required(ErrorMessage = "Organization name is a required field.")]
         [MaxLength(60, ErrorMessage = "Maximum length for the Name is 60 characters.")]
         public string OrgName { get; set; }
-
+        public string City { get; set; }
+        public string Country { get; set; }
         public ICollection<User> Users { get; set; }
     }
 }

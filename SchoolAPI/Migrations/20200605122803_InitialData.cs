@@ -12,7 +12,9 @@ namespace SchoolAPI.Migrations
                 columns: table => new
                 {
                     OrganizationId = table.Column<Guid>(nullable: false),
-                    OrgName = table.Column<string>(maxLength: 60, nullable: false)
+                    OrgName = table.Column<string>(maxLength: 60, nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -40,13 +42,13 @@ namespace SchoolAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Organizations",
-                columns: new[] { "OrganizationId", "OrgName" },
-                values: new object[] { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "xyz org" });
+                columns: new[] { "OrganizationId", "City", "Country", "OrgName" },
+                values: new object[] { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Bloomfield", "USA", "xyz org" });
 
             migrationBuilder.InsertData(
                 table: "Organizations",
-                columns: new[] { "OrganizationId", "OrgName" },
-                values: new object[] { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "lmnop org" });
+                columns: new[] { "OrganizationId", "City", "Country", "OrgName" },
+                values: new object[] { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "Lusaka", "ZM", "lmnop org" });
 
             migrationBuilder.InsertData(
                 table: "Users",
