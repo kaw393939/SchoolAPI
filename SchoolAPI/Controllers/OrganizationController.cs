@@ -58,6 +58,11 @@ namespace SchoolAPI.Controllers
                 _logger.LogError("CompanyForCreationDto object sent from client is null.");
                 return BadRequest("CompanyForCreationDto object is null");
             }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the OrganizationForCreationDto object");
+                return UnprocessableEntity(ModelState);
+            }
 
             var organizationEntity = _mapper.Map<Organization>(organization);
 
