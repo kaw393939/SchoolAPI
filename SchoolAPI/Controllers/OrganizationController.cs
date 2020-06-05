@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace CompanyEmployees.Controllers
+namespace SchoolAPI.Controllers
 {
     [Route("api/v1/organizations")]
     [ApiController]
@@ -25,20 +25,13 @@ namespace CompanyEmployees.Controllers
         [HttpGet]
         public IActionResult GetOrganizations()
         {
-            try
-            {
+
                 var organizations = _repository.Organization.GetAllOrganizations(trackChanges: false);
-                return Ok(organizations);
-                /*var organizationDto = _mapper.Map<IEnumerable<OrganizationDto>>(organizations);
 
-                return Ok(organizationDto);*/
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Something went wrong in the {nameof(GetOrganizations)} action {ex}");
-                return StatusCode(500, "Internal server error");
-            }
+                var organizationDto = _mapper.Map<IEnumerable<OrganizationDto>>(organizations);
+            //test the global exception handling
+            //throw new Exception("Exception");
+            return Ok(organizationDto);
         }
     }
 }

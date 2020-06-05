@@ -2,7 +2,7 @@
 using Entities.DataTransferObjects;
 using Entities.Models;
 
-namespace CompanyEmployees
+namespace SchoolAPI
 {
     public class MappingProfile : Profile
     {
