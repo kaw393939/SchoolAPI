@@ -8,6 +8,4 @@
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\LoggerManager\LoggerService.csproj" />
   </ItemGroup>
-
-
 </Project>

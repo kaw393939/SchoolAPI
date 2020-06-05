@@ -10,7 +10,6 @@ using System.IO;
 
 namespace SchoolAPI
 {
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -36,8 +35,6 @@ namespace SchoolAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-        
-
 
             app.UseRouting();
 
