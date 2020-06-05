@@ -40,5 +40,29 @@ namespace CompanyEmployees.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [HttpGet("{id}")]
+        public IActionResult GetOrganizationy(Guid id)
+        {
+            try
+            {
+                var organization = _repository.Organization.GetOrganization(id, trackChanges: false); if (organization == null)
+                {
+                    _logger.LogInfo($"Organization with id: {id} doesn't exist in the database.");
+                    return NotFound();
+                }
+                else
+                {
+                    var organizationDto = _mapper.Map<OrganizationDto>(organization);
+                    return Ok(organizationDto);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(GetOrganizations)} action {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+           
+        }
     }
 }
