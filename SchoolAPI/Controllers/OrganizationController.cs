@@ -55,8 +55,8 @@ namespace SchoolAPI.Controllers
         {
             if (organization == null)
             {
-                _logger.LogError("CompanyForCreationDto object sent from client is null.");
-                return BadRequest("CompanyForCreationDto object is null");
+                _logger.LogError("Organization ForCreationDto object sent from client is null.");
+                return BadRequest("Organization ForCreationDto object is null");
             }
             if (!ModelState.IsValid)
             {
