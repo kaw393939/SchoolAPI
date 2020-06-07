@@ -13,6 +13,7 @@ namespace Repository
             : base(repositoryContext)
         {
         }
+
         public IEnumerable<Organization> GetAllOrganizations(bool trackChanges) =>
           FindAll(trackChanges)
           .OrderBy(c => c.OrgName)
@@ -22,11 +23,11 @@ namespace Repository
          FindByCondition(c => c.Id.Equals(companyId), trackChanges)
         .SingleOrDefault();
 
-        public void CreateOrganization(Organization company) => Create(company);
+        public void CreateOrganization(Organization organization) => Create(organization);
+
         public IEnumerable<Organization> GetByIds(IEnumerable<Guid> ids, bool trackChanges) =>
             FindByCondition(x => ids.Contains(x.Id), trackChanges)
             .ToList();
-
 
         public void DeleteCompany(Organization organization)
         {
