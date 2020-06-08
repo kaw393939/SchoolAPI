@@ -29,7 +29,7 @@ namespace Repository
             FindByCondition(x => ids.Contains(x.Id), trackChanges)
             .ToList();
 
-        public void DeleteCompany(Organization organization)
+        public void DeleteOrganization(Organization organization)
         {
             Delete(organization);
         }

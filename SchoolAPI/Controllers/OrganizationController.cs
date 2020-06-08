@@ -26,30 +26,29 @@ namespace SchoolAPI.Controllers
         [HttpGet(Name = "getAllOrganizations")]
         public IActionResult GetOrganizations()
         {
+            var organizations = _repository.Organization.GetAllOrganizations(trackChanges: false);
 
-                var organizations = _repository.Organization.GetAllOrganizations(trackChanges: false);
-
-                var organizationDto = _mapper.Map<IEnumerable<OrganizationDto>>(organizations);
+            var organizationDto = _mapper.Map<IEnumerable<OrganizationDto>>(organizations);
             //uncomment the code below to test the global exception handling
             //throw new Exception("Exception");
             return Ok(organizationDto);
         }
+
         [HttpGet("{id}", Name = "getOrganizationById")]
         public IActionResult GetOrganization(Guid id)
         {
-
-                var organization = _repository.Organization.GetOrganization(id, trackChanges: false); if (organization == null)
-                {
-                    _logger.LogInfo($"Organization with id: {id} doesn't exist in the database.");
-                    return NotFound();
-                }
-                else
-                {
-                    var organizationDto = _mapper.Map<OrganizationDto>(organization);
-                    return Ok(organizationDto);
-                }
-           
+            var organization = _repository.Organization.GetOrganization(id, trackChanges: false); if (organization == null)
+            {
+                _logger.LogInfo($"Organization with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            else
+            {
+                var organizationDto = _mapper.Map<OrganizationDto>(organization);
+                return Ok(organizationDto);
+            }
         }
+
         [HttpPost(Name = "createOrganization")]
         public IActionResult CreateOrganization([FromBody]OrganizationForCreationDto organization)
         {
@@ -73,6 +72,7 @@ namespace SchoolAPI.Controllers
 
             return CreatedAtRoute("getOrganizationById", new { id = organizationToReturn.Id }, organizationToReturn);
         }
+
         [HttpPut("{id}")]
         public IActionResult UpdateOrganization(Guid id, [FromBody] OrganizationForUpdateDto organization)
         {
@@ -98,21 +98,21 @@ namespace SchoolAPI.Controllers
 
             return NoContent();
         }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteOrganization(Guid id)
         {
-            var company = _repository.Organization.GetOrganization(id, trackChanges: false);
-            if (company == null)
+            var organization = _repository.Organization.GetOrganization(id, trackChanges: false);
+            if (organization == null)
             {
                 _logger.LogInfo($"Organiation with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
 
-            _repository.Organization.DeleteCompany(company);
+            _repository.Organization.DeleteOrganization(organization);
             _repository.Save();
 
             return NoContent();
         }
-
     }
 }
